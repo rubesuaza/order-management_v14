@@ -6,6 +6,7 @@ import com.example.management.domain.OrderLine;
 import com.example.management.domain.OrderStatus;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,10 +26,8 @@ public class OrderPersistenceAdapter implements OrderRepository {
     public Order save(Order order) {
         OrderJpaEntity jpaEntity = toJpaEntity(order);
         OrderJpaEntity saved = jpaRepository.save(jpaEntity);
-        Order domainOrder = toDomainEntity(saved);
-        // Establecer el ID generado en la entidad de dominio
-        domainOrder.setId(saved.getId());
-        return domainOrder;
+        // Reconstruir la entidad de dominio con el ID generado por la persistencia
+        return toDomainEntity(saved);
     }
     
     @Override
@@ -44,12 +43,10 @@ public class OrderPersistenceAdapter implements OrderRepository {
     
     private OrderJpaEntity toJpaEntity(Order order) {
         OrderStatusJpa statusJpa = mapStatusToJpa(order.getStatus());
-        OrderJpaEntity jpaEntity = new OrderJpaEntity(order.getCustomerId(), statusJpa);
-        
-        // Si el pedido tiene un ID (en caso de actualización), establecerlo
-        if (order.getId() != null) {
-            jpaEntity.setId(order.getId());
-        }
+        // Usar el constructor apropiado según si el pedido tiene ID (actualización) o no (nuevo)
+        OrderJpaEntity jpaEntity = order.getId() != null
+                ? new OrderJpaEntity(order.getId(), order.getCustomerId(), statusJpa)
+                : new OrderJpaEntity(order.getCustomerId(), statusJpa);
         
         // Convertir líneas
         for (OrderLine line : order.getLines()) {
@@ -66,31 +63,25 @@ public class OrderPersistenceAdapter implements OrderRepository {
     }
     
     private Order toDomainEntity(OrderJpaEntity jpaEntity) {
-        Order order = Order.create(jpaEntity.getCustomerId());
+        // Convertir líneas JPA a líneas de dominio
+        List<OrderLine> domainLines = jpaEntity.getLines().stream()
+                .map(lineJpa -> new OrderLine(
+                        lineJpa.getProductId(),
+                        lineJpa.getUnitPrice(),
+                        lineJpa.getQuantity()))
+                .toList();
         
-        // Establecer ID si existe
-        if (jpaEntity.getId() != null) {
-            order.setId(jpaEntity.getId());
-        }
-        
-        // Restaurar líneas
-        for (OrderLineJpaEntity lineJpa : jpaEntity.getLines()) {
-            order.addLine(
-                    lineJpa.getProductId(),
-                    lineJpa.getUnitPrice(),
-                    lineJpa.getQuantity()
-            );
-        }
-        
-        // Restaurar estado
+        // Mapear estado
         OrderStatus status = mapStatusToDomain(jpaEntity.getStatus());
-        if (status == OrderStatus.CONFIRMED) {
-            order.confirm();
-        } else if (status == OrderStatus.CANCELED) {
-            order.cancel();
-        }
         
-        return order;
+        // Reconstruir la entidad de dominio usando el método de fábrica reconstruct
+        // que establece el ID de forma inmutable durante la construcción
+        return Order.reconstruct(
+                jpaEntity.getId(),
+                jpaEntity.getCustomerId(),
+                status,
+                domainLines
+        );
     }
     
     private OrderStatusJpa mapStatusToJpa(OrderStatus status) {

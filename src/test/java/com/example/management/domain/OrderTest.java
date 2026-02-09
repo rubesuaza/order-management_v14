@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class OrderTest {
 
     @Test
-    void crearPedidoDebeRequerirCliente() {
+    void createOrderShouldRequireCustomer() {
         assertThrows(IllegalArgumentException.class, () -> Order.create(null));
     }
 
     @Test
-    void noDebePermitirLineasConCantidadNoPositiva() {
+    void shouldNotAllowLinesWithNonPositiveQuantity() {
         Order order = Order.create("CUST-1");
 
         assertThrows(IllegalArgumentException.class,
@@ -26,7 +26,7 @@ class OrderTest {
     }
 
     @Test
-    void noDebePermitirLineasConPrecioNegativo() {
+    void shouldNotAllowLinesWithNegativePrice() {
         Order order = Order.create("CUST-1");
 
         assertThrows(IllegalArgumentException.class,
@@ -34,7 +34,7 @@ class OrderTest {
     }
 
     @Test
-    void totalDelPedidoDebeSerSumaDeLasLineas() {
+    void orderTotalShouldBeSumOfLines() {
         Order order = Order.create("CUST-1");
 
         order.addLine("PROD-1", new BigDecimal("10.00"), 2); // 20.00
@@ -44,7 +44,7 @@ class OrderTest {
     }
 
     @Test
-    void noDebePermitirModificarUnPedidoConfirmado() {
+    void shouldNotAllowModifyingConfirmedOrder() {
         Order order = Order.create("CUST-1");
         order.addLine("PROD-1", new BigDecimal("10.00"), 1);
         order.confirm();
@@ -54,14 +54,14 @@ class OrderTest {
     }
 
     @Test
-    void noDebePermitirConfirmarUnPedidoSinLineas() {
+    void shouldNotAllowConfirmingOrderWithoutLines() {
         Order order = Order.create("CUST-1");
 
         assertThrows(IllegalStateException.class, order::confirm);
     }
 
     @Test
-    void noDebePermitirCancelarUnPedidoYaCancelado() {
+    void shouldNotAllowCancelingAlreadyCanceledOrder() {
         Order order = Order.create("CUST-1");
         order.addLine("PROD-1", new BigDecimal("10.00"), 1);
         order.cancel();
@@ -70,7 +70,7 @@ class OrderTest {
     }
 
     @Test
-    void puedeConfirmarYPasaraEstadoConfirmado() {
+    void canConfirmAndTransitionToConfirmedState() {
         Order order = Order.create("CUST-1");
         order.addLine("PROD-1", new BigDecimal("10.00"), 1);
 
@@ -80,7 +80,7 @@ class OrderTest {
     }
 
     @Test
-    void noDebePermitirModificarUnPedidoCancelado() {
+    void shouldNotAllowModifyingCanceledOrder() {
         Order order = Order.create("CUST-1");
         order.addLine("PROD-1", new BigDecimal("10.00"), 1);
         order.cancel();
@@ -90,7 +90,7 @@ class OrderTest {
     }
 
     @Test
-    void puedeCancelarUnPedidoConfirmadoYPasaraEstadoCancelado() {
+    void canCancelConfirmedOrderAndTransitionToCanceledState() {
         Order order = Order.create("CUST-1");
         order.addLine("PROD-1", new BigDecimal("10.00"), 1);
         order.confirm();

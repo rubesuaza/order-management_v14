@@ -36,12 +36,15 @@ public class OrderJpaEntity {
         this.status = status;
     }
     
-    public String getId() {
-        return id;
+    // Constructor para reconstruir entidades existentes con ID
+    public OrderJpaEntity(String id, String customerId, OrderStatusJpa status) {
+        this.id = id;
+        this.customerId = customerId;
+        this.status = status;
     }
     
-    public void setId(String id) {
-        this.id = id;
+    public String getId() {
+        return id;
     }
     
     public String getCustomerId() {

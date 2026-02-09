@@ -2,7 +2,6 @@ package com.example.management.domain;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,15 +13,16 @@ import java.util.Objects;
  */
 public final class Order {
 
-    private String id;
+    private final String id;
     private final String customerId;
     private final List<OrderLine> lines = new ArrayList<>();
     private OrderStatus status = OrderStatus.CREATED;
 
-    private Order(String customerId) {
+    private Order(String id, String customerId) {
         if (customerId == null || customerId.isBlank()) {
             throw new IllegalArgumentException("El cliente es obligatorio");
         }
+        this.id = id;
         this.customerId = customerId;
     }
 
@@ -31,7 +31,19 @@ public final class Order {
      * un estado inválido.
      */
     public static Order create(String customerId) {
-        return new Order(customerId);
+        return new Order(null, customerId);
+    }
+
+    /**
+     * Método de fábrica estática para reconstruir un pedido desde persistencia.
+     * Este método debe ser usado únicamente por adaptadores de persistencia
+     * para reconstruir entidades con su ID ya asignado.
+     */
+    public static Order reconstruct(String id, String customerId, OrderStatus status, List<OrderLine> lines) {
+        Order order = new Order(id, customerId);
+        order.status = status;
+        order.lines.addAll(lines);
+        return order;
     }
 
     /**
@@ -69,16 +81,12 @@ public final class Order {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     /**
      * Devuelve una copia inmutable de las líneas para no exponer
      * el estado interno.
      */
     public List<OrderLine> getLines() {
-        return Collections.unmodifiableList(new ArrayList<>(lines));
+        return List.copyOf(lines);
     }
 
     /**
