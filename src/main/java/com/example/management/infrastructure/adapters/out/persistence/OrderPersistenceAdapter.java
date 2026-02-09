@@ -15,8 +15,11 @@ import java.util.Optional;
 @Component
 public class OrderPersistenceAdapter implements OrderRepository {
     
-    public OrderPersistenceAdapter(OrderJpaRepository jpaRepository) {
+    private final OrderJpaRepository jpaRepository;
     
+    public OrderPersistenceAdapter(OrderJpaRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
     
     @Override
     public Order save(Order order) {

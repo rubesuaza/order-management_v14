@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-09T14:40:23.017Z" hostname="RubenS" time="0.979">
+  <properties/>
+  <testcase name="debeVerificarSiExisteUnPedido()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.836"/>
+  <testcase name="debeRetornarEmptyCuandoNoExisteElPedido()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.026"/>
+  <testcase name="debeActualizarUnPedidoExistente()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.034"/>
+  <testcase name="debeGenerarIdAlGuardarUnPedidoNuevo()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.023"/>
+  <testcase name="debeGuardarUnPedidoConfirmadoYRestaurarSuEstado()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.012"/>
+  <testcase name="debeGuardarUnPedidoYRecuperarlo()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.015"/>
+  <testcase name="debeGuardarUnPedidoCanceladoYRestaurarSuEstado()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.017"/>
+  <system-out><![CDATA[2026-02-09T09:40:19.868-05:00  INFO 138328 --- [management] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest]: OrderPersistenceAdapterTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-09T09:40:19.937-05:00  INFO 138328 --- [management] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.management.ManagementApplication for test class com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-02-09T09:40:20.009-05:00  INFO 138328 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : Starting OrderPersistenceAdapterTest using Java 17.0.18 with PID 138328 (started by root in /root/agent_code_generator/workspaces/order_management_workspace/order-management_v14)
+2026-02-09T09:40:20.011-05:00  INFO 138328 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : No active profile set, falling back to 1 default profile: "default"
+2026-02-09T09:40:20.282-05:00  INFO 138328 --- [management] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-09T09:40:20.372-05:00  INFO 138328 --- [management] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 74 ms. Found 1 JPA repository interface.
+2026-02-09T09:40:20.468-05:00  INFO 138328 --- [management] [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-02-09T09:40:20.601-05:00  INFO 138328 --- [management] [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:a42503c1-181a-4dd4-be06-0e8a1abbd53a;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-02-09T09:40:21.007-05:00  INFO 138328 --- [management] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-09T09:40:21.129-05:00  INFO 138328 --- [management] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-02-09T09:40:21.206-05:00  INFO 138328 --- [management] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-09T09:40:21.354-05:00  INFO 138328 --- [management] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-09T09:40:22.450-05:00  INFO 138328 --- [management] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    drop table if exists order_lines cascade 
+Hibernate: 
+    drop table if exists orders cascade 
+Hibernate: 
+    create table order_lines (
+        quantity integer not null,
+        unit_price numeric(19,2) not null,
+        id varchar(255) not null,
+        order_id varchar(255) not null,
+        product_id varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table orders (
+        customer_id varchar(255) not null,
+        id varchar(255) not null,
+        status varchar(255) not null check (status in ('CREATED','CONFIRMED','CANCELED')),
+        primary key (id)
+    )
+Hibernate: 
+    alter table if exists order_lines 
+       add constraint FK1smc0s578t2oih21yn9hw6usr 
+       foreign key (order_id) 
+       references orders
+2026-02-09T09:40:22.530-05:00  INFO 138328 --- [management] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-09T09:40:23.008-05:00  INFO 138328 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : Started OrderPersistenceAdapterTest in 3.055 seconds (process running for 10.458)
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+Hibernate: 
+    insert 
+    into
+        orders
+        (customer_id, status, id) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        order_lines
+        (order_id, product_id, quantity, unit_price, id) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        count(*) 
+    from
+        orders oje1_0 
+    where
+        oje1_0.id=?
+Hibernate: 
+    select
+        count(*) 
+    from
+        orders oje1_0 
+    where
+        oje1_0.id=?
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0 
+    where
+        oje1_0.id=?
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+Hibernate: 
+    select
+        oje1_0.id,
+        oje1_0.customer_id,
+        oje1_0.status 
+    from
+        orders oje1_0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -74,7 +74,7 @@ public class OrderJpaEntity {
  */
 @Entity
 @Table(name = "order_lines")
-public class OrderLineJpaEntity {
+class OrderLineJpaEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -132,7 +132,7 @@ public class OrderLineJpaEntity {
 /**
  * Enumeración JPA para el estado del pedido.
  */
-public enum OrderStatusJpa {
+enum OrderStatusJpa {
     CREATED,
     CONFIRMED,
     CANCELED

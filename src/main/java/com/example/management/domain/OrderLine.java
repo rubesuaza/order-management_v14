@@ -7,13 +7,13 @@ import java.util.Objects;
  * Línea de pedido como entidad hija de {@link Order}.
  * Contiene sólo lógica de dominio y usa únicamente la librería estándar.
  */
-final class OrderLine {
+public final class OrderLine {
 
     private final String productId;
     private final BigDecimal unitPrice;
     private final int quantity;
 
-    OrderLine(String productId, BigDecimal unitPrice, int quantity) {
+    public OrderLine(String productId, BigDecimal unitPrice, int quantity) {
         if (productId == null || productId.isBlank()) {
             throw new IllegalArgumentException("El identificador de producto es obligatorio");
         }
@@ -32,19 +32,19 @@ final class OrderLine {
         this.quantity = quantity;
     }
 
-    BigDecimal getLineTotal() {
+    public BigDecimal getLineTotal() {
         return unitPrice.multiply(BigDecimal.valueOf(quantity));
     }
 
-    String getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    BigDecimal getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    int getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
