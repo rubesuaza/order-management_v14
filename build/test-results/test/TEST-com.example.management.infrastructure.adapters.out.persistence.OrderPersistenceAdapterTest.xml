@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-09T14:42:49.709Z" hostname="RubenS" time="1.537">
+<testsuite name="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-09T14:49:48.470Z" hostname="RubenS" time="1.628">
   <properties/>
-  <testcase name="debeVerificarSiExisteUnPedido()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="1.365"/>
-  <testcase name="debeRetornarEmptyCuandoNoExisteElPedido()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.032"/>
-  <testcase name="debeActualizarUnPedidoExistente()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.048"/>
-  <testcase name="debeGenerarIdAlGuardarUnPedidoNuevo()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.022"/>
-  <testcase name="debeGuardarUnPedidoConfirmadoYRestaurarSuEstado()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.016"/>
-  <testcase name="debeGuardarUnPedidoYRecuperarlo()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.016"/>
-  <testcase name="debeGuardarUnPedidoCanceladoYRestaurarSuEstado()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.016"/>
-  <system-out><![CDATA[2026-02-09T09:42:46.669-05:00  INFO 139354 --- [management] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest]: OrderPersistenceAdapterTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-02-09T09:42:46.737-05:00  INFO 139354 --- [management] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.management.ManagementApplication for test class com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest
+  <testcase name="debeVerificarSiExisteUnPedido()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="1.452"/>
+  <testcase name="debeRetornarEmptyCuandoNoExisteElPedido()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.038"/>
+  <testcase name="debeActualizarUnPedidoExistente()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.046"/>
+  <testcase name="debeGenerarIdAlGuardarUnPedidoNuevo()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.021"/>
+  <testcase name="debeGuardarUnPedidoConfirmadoYRestaurarSuEstado()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.017"/>
+  <testcase name="debeGuardarUnPedidoYRecuperarlo()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.017"/>
+  <testcase name="debeGuardarUnPedidoCanceladoYRestaurarSuEstado()" classname="com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest" time="0.017"/>
+  <system-out><![CDATA[2026-02-09T09:49:44.762-05:00  INFO 142526 --- [management] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest]: OrderPersistenceAdapterTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-09T09:49:44.838-05:00  INFO 142526 --- [management] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.management.ManagementApplication for test class com.example.management.infrastructure.adapters.out.persistence.OrderPersistenceAdapterTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -19,17 +19,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-02-09T09:42:46.809-05:00  INFO 139354 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : Starting OrderPersistenceAdapterTest using Java 17.0.18 with PID 139354 (started by root in /root/agent_code_generator/workspaces/order_management_workspace/order-management_v14)
-2026-02-09T09:42:46.810-05:00  INFO 139354 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : No active profile set, falling back to 1 default profile: "default"
-2026-02-09T09:42:47.097-05:00  INFO 139354 --- [management] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-09T09:42:47.173-05:00  INFO 139354 --- [management] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 1 JPA repository interface.
-2026-02-09T09:42:47.273-05:00  INFO 139354 --- [management] [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2026-02-09T09:42:47.410-05:00  INFO 139354 --- [management] [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:6adeb1bc-d413-4d9e-91ca-d2e8f845a744;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2026-02-09T09:42:47.806-05:00  INFO 139354 --- [management] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-09T09:42:47.901-05:00  INFO 139354 --- [management] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-02-09T09:42:47.954-05:00  INFO 139354 --- [management] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-09T09:42:48.112-05:00  INFO 139354 --- [management] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-09T09:42:49.170-05:00  INFO 139354 --- [management] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-09T09:49:44.952-05:00  INFO 142526 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : Starting OrderPersistenceAdapterTest using Java 17.0.18 with PID 142526 (started by root in /root/agent_code_generator/workspaces/order_management_workspace/order-management_v14)
+2026-02-09T09:49:44.954-05:00  INFO 142526 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : No active profile set, falling back to 1 default profile: "default"
+2026-02-09T09:49:45.326-05:00  INFO 142526 --- [management] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-09T09:49:45.412-05:00  INFO 142526 --- [management] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 1 JPA repository interface.
+2026-02-09T09:49:45.514-05:00  INFO 142526 --- [management] [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-02-09T09:49:45.648-05:00  INFO 142526 --- [management] [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:caeed3ff-d0e1-43de-b078-f1b830aece4f;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-02-09T09:49:46.097-05:00  INFO 142526 --- [management] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-09T09:49:46.196-05:00  INFO 142526 --- [management] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-02-09T09:49:46.260-05:00  INFO 142526 --- [management] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-09T09:49:46.643-05:00  INFO 142526 --- [management] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-09T09:49:47.893-05:00  INFO 142526 --- [management] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     drop table if exists order_lines cascade 
 Hibernate: 
@@ -55,8 +55,8 @@ Hibernate:
        add constraint FK1smc0s578t2oih21yn9hw6usr 
        foreign key (order_id) 
        references orders
-2026-02-09T09:42:49.234-05:00  INFO 139354 --- [management] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-09T09:42:49.699-05:00  INFO 139354 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : Started OrderPersistenceAdapterTest in 2.947 seconds (process running for 9.035)
+2026-02-09T09:49:47.963-05:00  INFO 142526 --- [management] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-09T09:49:48.447-05:00  INFO 142526 --- [management] [    Test worker] .e.m.i.a.o.p.OrderPersistenceAdapterTest : Started OrderPersistenceAdapterTest in 3.574 seconds (process running for 7.77)
 Hibernate: 
     select
         oje1_0.id,

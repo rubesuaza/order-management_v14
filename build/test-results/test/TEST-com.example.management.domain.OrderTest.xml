@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.management.domain.OrderTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-02-09T14:42:42.580Z" hostname="RubenS" time="0.109">
+<testsuite name="com.example.management.domain.OrderTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-02-09T14:49:41.974Z" hostname="RubenS" time="0.098">
   <properties/>
-  <testcase name="puedeCancelarUnPedidoConfirmadoYPasaraEstadoCancelado()" classname="com.example.management.domain.OrderTest" time="0.043"/>
-  <testcase name="noDebePermitirLineasConPrecioNegativo()" classname="com.example.management.domain.OrderTest" time="0.004"/>
-  <testcase name="noDebePermitirConfirmarUnPedidoSinLineas()" classname="com.example.management.domain.OrderTest" time="0.003"/>
-  <testcase name="totalDelPedidoDebeSerSumaDeLasLineas()" classname="com.example.management.domain.OrderTest" time="0.022"/>
-  <testcase name="noDebePermitirCancelarUnPedidoYaCancelado()" classname="com.example.management.domain.OrderTest" time="0.003"/>
-  <testcase name="noDebePermitirLineasConCantidadNoPositiva()" classname="com.example.management.domain.OrderTest" time="0.005"/>
-  <testcase name="noDebePermitirModificarUnPedidoConfirmado()" classname="com.example.management.domain.OrderTest" time="0.004"/>
-  <testcase name="noDebePermitirModificarUnPedidoCancelado()" classname="com.example.management.domain.OrderTest" time="0.002"/>
-  <testcase name="crearPedidoDebeRequerirCliente()" classname="com.example.management.domain.OrderTest" time="0.002"/>
-  <testcase name="puedeConfirmarYPasaraEstadoConfirmado()" classname="com.example.management.domain.OrderTest" time="0.002"/>
+  <testcase name="shouldNotAllowModifyingConfirmedOrder()" classname="com.example.management.domain.OrderTest" time="0.048"/>
+  <testcase name="shouldNotAllowModifyingCanceledOrder()" classname="com.example.management.domain.OrderTest" time="0.003"/>
+  <testcase name="orderTotalShouldBeSumOfLines()" classname="com.example.management.domain.OrderTest" time="0.005"/>
+  <testcase name="shouldNotAllowConfirmingOrderWithoutLines()" classname="com.example.management.domain.OrderTest" time="0.003"/>
+  <testcase name="canCancelConfirmedOrderAndTransitionToCanceledState()" classname="com.example.management.domain.OrderTest" time="0.002"/>
+  <testcase name="canConfirmAndTransitionToConfirmedState()" classname="com.example.management.domain.OrderTest" time="0.002"/>
+  <testcase name="shouldNotAllowCancelingAlreadyCanceledOrder()" classname="com.example.management.domain.OrderTest" time="0.006"/>
+  <testcase name="createOrderShouldRequireCustomer()" classname="com.example.management.domain.OrderTest" time="0.003"/>
+  <testcase name="shouldNotAllowLinesWithNegativePrice()" classname="com.example.management.domain.OrderTest" time="0.002"/>
+  <testcase name="shouldNotAllowLinesWithNonPositiveQuantity()" classname="com.example.management.domain.OrderTest" time="0.005"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
